@@ -1,0 +1,11 @@
+{
+  "rules": [
+    {"id": "GST-001", "domain": "gst", "name": "GSTIN Format Validation", "version": "1.0"},
+    {"id": "GST-002", "domain": "gst", "name": "GST Rate Slab Validation", "version": "1.0"},
+    {"id": "INV-001", "domain": "invoice", "name": "Invoice Mandatory Fields", "version": "1.0"},
+    {"id": "INV-002", "domain": "invoice", "name": "Invoice Amount Consistency", "version": "1.0"},
+    {"id": "BANK-001", "domain": "bank", "name": "Bank Balance Reconciliation", "version": "1.0"},
+    {"id": "ROC-001", "domain": "roc", "name": "CIN Format Validation", "version": "1.0"},
+    {"id": "TDS-001", "domain": "tds", "name": "TAN Format Validation", "version": "1.0"}
+  ]
+}

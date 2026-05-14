@@ -1,0 +1,13 @@
+[project]
+name = "prysm-backend"
+version = "0.1.0"
+description = "PRYSM — Continuous AI Compliance Operating System"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
