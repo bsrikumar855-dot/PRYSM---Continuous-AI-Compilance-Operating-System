@@ -1,16 +1,16 @@
 """AI client — Groq/LLM provider wrapper."""
 
-from app.config.settings import settings
+from app.core.config import settings
 
 
 class AIClient:
     """Abstraction over LLM providers (Groq + LLaMA 3.3)."""
 
     def __init__(self):
-        self.api_key = settings.GROQ_API_KEY
-        self.model = settings.LLM_MODEL
-        self.temperature = settings.LLM_TEMPERATURE
-        self.max_tokens = settings.LLM_MAX_TOKENS
+        self.api_key = settings.groq_api_key
+        self.model = settings.groq_model
+        self.temperature = settings.llm_temperature
+        self.max_tokens = settings.llm_max_tokens
 
     async def generate(self, prompt: str, system_prompt: str = None) -> str:
         """Generate LLM response."""

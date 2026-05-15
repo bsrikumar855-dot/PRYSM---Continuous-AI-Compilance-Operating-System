@@ -1,63 +1,77 @@
 """
-PRYSM Backend — FastAPI Application Entrypoint
-Continuous AI Compliance Operating System
+PRYSM Backend — Application Entry Point
+==========================================
+FastAPI application factory with API v1 versioning,
+middleware stack, and consolidated router registration.
 """
+
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.config.settings import settings
+from app.core.config import settings
+from app.core.errors import register_exception_handlers
+from app.core.logging import setup_logging
+from app.db.init_db import init_db
+from app.middleware.request_id import RequestIdMiddleware
+
+# Import routers
 from app.routers import (
-    health,
-    documents,
-    compliance,
-    risk,
-    review,
-    reports,
-    copilot,
+    analyze,
     dashboard,
+    extract,
+    health,
+    reports,
+    risks,
+    upload,
 )
-from app.middleware.error_handler import register_error_handlers
-from app.middleware.logging import LoggingMiddleware
-from app.logging.logger import setup_logging
+
+# Register default event handlers on import
+import app.events.handlers  # noqa: F401
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    init_db()
+    yield
 
 
 def create_app() -> FastAPI:
-    """Application factory — creates and configures the FastAPI app."""
-
     setup_logging()
 
     app = FastAPI(
-        title="PRYSM API",
+        title="PRYSM Backend",
         description="Continuous AI Compliance Operating System",
-        version="0.1.0",
-        docs_url="/api/docs",
-        redoc_url="/api/redoc",
+        version="1.0.0",
+        docs_url="/docs",
+        redoc_url="/redoc",
+        lifespan=lifespan,
     )
 
-    # --- Middleware ---
+    # ── Middleware Stack (order matters: outermost first) ─────────────
+    app.add_middleware(RequestIdMiddleware)
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=settings.CORS_ORIGINS,
+        allow_origins=settings.cors_origins,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
     )
-    app.add_middleware(LoggingMiddleware)
 
-    # --- Error Handlers ---
-    register_error_handlers(app)
+    # ── Exception Handlers ────────────────────────────────────────────
+    register_exception_handlers(app)
 
-    # --- Routers ---
-    api_prefix = "/api/v1"
-    app.include_router(health.router, prefix="/api", tags=["Health"])
-    app.include_router(documents.router, prefix=f"{api_prefix}/documents", tags=["Documents"])
-    app.include_router(compliance.router, prefix=f"{api_prefix}/compliance", tags=["Compliance"])
-    app.include_router(risk.router, prefix=f"{api_prefix}/risk", tags=["Risk"])
-    app.include_router(review.router, prefix=f"{api_prefix}/review", tags=["Review"])
-    app.include_router(reports.router, prefix=f"{api_prefix}/reports", tags=["Reports"])
-    app.include_router(copilot.router, prefix=f"{api_prefix}/copilot", tags=["Copilot"])
-    app.include_router(dashboard.router, prefix=f"{api_prefix}/dashboard", tags=["Dashboard"])
+    # ── Health (no prefix) ────────────────────────────────────────────
+    app.include_router(health.router, tags=["health"])
+
+    # ── API v1 Routes ─────────────────────────────────────────────────
+    app.include_router(upload.router, prefix="/api/v1", tags=["documents"])
+    app.include_router(extract.router, prefix="/api/v1", tags=["documents"])
+    app.include_router(analyze.router, prefix="/api/v1", tags=["compliance"])
+    app.include_router(risks.router, prefix="/api/v1", tags=["risks"])
+    app.include_router(dashboard.router, prefix="/api/v1", tags=["dashboard"])
+    app.include_router(reports.router, prefix="/api/v1", tags=["reports"])
 
     return app
 

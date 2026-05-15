@@ -1,44 +1,55 @@
-# Dependencies
-node_modules/
+# ==================================================
+# PRYSM .gitignore
+# ==================================================
+
+# Python
 __pycache__/
-*.pyc
-.pytest_cache/
+*.py[cod]
+*$py.class
+*.so
 *.egg-info/
 dist/
 build/
+*.egg
 
-# Environment
+# Virtual environments
+.venv/
+venv/
+env/
 .env
-.env.local
-.env.production
-
-# Database
-*.db
-*.sqlite3
-
-# Uploads
-uploads/
-chroma_data/
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Next.js
-.next/
-out/
+# Storage (runtime data)
+backend/storage/
+backend/uploads/
+backend/chroma_data/
 
 # Logs
 *.log
-logs/
+*.err.log
 
-# Coverage
-coverage/
+# Test artifacts
+.pytest_cache/
+pytest-cache-files-*/
 htmlcov/
 .coverage
+coverage.xml
+
+# Build
+node_modules/
+.next/
+out/
+
+# Data
+backend/data_test/
+backend/demo_data/
