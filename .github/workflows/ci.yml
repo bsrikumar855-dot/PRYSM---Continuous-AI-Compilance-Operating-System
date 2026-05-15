@@ -1,39 +1,70 @@
-name: CI — Lint & Test
+name: CI - Lint & Test
 
 on:
   pull_request:
     branches: [main]
+
   push:
     branches: [main]
 
 jobs:
   backend-lint:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install ruff
-      - run: cd backend && ruff check app/
+
+      - name: Install Backend Dependencies
+        run: |
+          cd backend
+          pip install -r requirements-dev.txt
+
+      - name: Run Ruff Linter
+        run: |
+          cd backend
+          ruff check app/
 
   backend-test:
     runs-on: ubuntu-latest
     needs: backend-lint
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: cd backend && pip install -r requirements-dev.txt
-      - run: cd backend && python -m pytest tests/ -v
+
+      - name: Install Backend Dependencies
+        run: |
+          cd backend
+          pip install -r requirements-dev.txt
+
+      - name: Run Integration Tests
+        run: |
+          cd backend
+          python -m pytest tests/integration/test_routers -v
 
   frontend-lint:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - run: cd frontend && npm ci
-      - run: cd frontend && npm run lint
+
+      - name: Install Frontend Dependencies
+        run: |
+          cd frontend
+          npm ci
+
+      - name: Run Frontend Lint
+        run: |
+          cd frontend
+          npm run lint

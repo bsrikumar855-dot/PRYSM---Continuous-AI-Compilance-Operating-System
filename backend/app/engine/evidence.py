@@ -1,6 +1,5 @@
 """Evidence mapping — links rule results to source document evidence."""
 
-from typing import Dict, Any
 
 
 class EvidenceMapper:

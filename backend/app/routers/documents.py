@@ -1,7 +1,6 @@
 """Document upload & management endpoints."""
 
-from fastapi import APIRouter, UploadFile, File, Depends
-from typing import List
+from fastapi import APIRouter, UploadFile, File
 
 router = APIRouter()
 

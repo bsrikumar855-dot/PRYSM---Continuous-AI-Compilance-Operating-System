@@ -28,7 +28,7 @@ from __future__ import annotations
 
 import logging
 from collections import defaultdict
-from typing import Any, Callable, Type
+from typing import Callable, Type
 
 from app.events.types import DomainEvent
 

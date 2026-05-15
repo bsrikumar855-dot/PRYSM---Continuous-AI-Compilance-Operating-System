@@ -18,13 +18,13 @@ from app.middleware.request_id import RequestIdMiddleware
 
 # Import routers
 from app.routers import (
-    analyze,
-    dashboard,
-    extract,
     health,
+    documents,
+    compliance,
+    dashboard,
     reports,
-    risks,
-    upload,
+    review,
+    copilot
 )
 
 # Register default event handlers on import
@@ -66,12 +66,12 @@ def create_app() -> FastAPI:
     app.include_router(health.router, tags=["health"])
 
     # ── API v1 Routes ─────────────────────────────────────────────────
-    app.include_router(upload.router, prefix="/api/v1", tags=["documents"])
-    app.include_router(extract.router, prefix="/api/v1", tags=["documents"])
-    app.include_router(analyze.router, prefix="/api/v1", tags=["compliance"])
-    app.include_router(risks.router, prefix="/api/v1", tags=["risks"])
+    app.include_router(documents.router, prefix="/api/v1", tags=["documents"])
+    app.include_router(compliance.router, prefix="/api/v1", tags=["compliance"])
     app.include_router(dashboard.router, prefix="/api/v1", tags=["dashboard"])
     app.include_router(reports.router, prefix="/api/v1", tags=["reports"])
+    app.include_router(review.router, prefix="/api/v1", tags=["review"])
+    app.include_router(copilot.router, prefix="/api/v1", tags=["copilot"])
 
     return app
 
