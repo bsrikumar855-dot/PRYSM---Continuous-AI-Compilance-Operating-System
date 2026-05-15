@@ -2,11 +2,14 @@ name: CI - Lint & Test
 
 on:
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - sharun/testing-ci
 
   push:
-    branches: [main]
-
+    branches:
+      - main
+      - sharun/testing-ci
 jobs:
   backend-lint:
     runs-on: ubuntu-latest
