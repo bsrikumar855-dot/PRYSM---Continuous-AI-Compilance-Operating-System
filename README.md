@@ -183,23 +183,6 @@ sequenceDiagram
 
 ---
 
-## 🎬 Demo Preview
-
-> Replace these placeholders with your actual project GIFs/screenshots.
-
-| Landing Page | Risk Dashboard |
-|---|---|
-| ![Landing Demo](<img width="1919" height="938" alt="image" src="https://github.com/user-attachments/assets/82c857c3-858f-479c-8e8e-ca5371dcd5a6" />
-) | ![Dashboard Demo](<img width="1894" height="900" alt="image" src="https://github.com/user-attachments/assets/aa49f519-a68e-4c0f-95d1-24c724bd9d5c" />
-) |
-
-| AI Extraction | Audit Report |
-|---|---|
-| ![Extraction Demo](<img width="1419" height="815" alt="image" src="https://github.com/user-attachments/assets/11932ccf-6889-4be2-9a43-773c672841de" />
-) | ![Report Demo](https://placehold.co/600x350/111827/22C55E?text=Audit+PDF+Report) |
-
----
-
 ## ⚙️ Installation Guide
 
 ### 1. Clone the Repository
