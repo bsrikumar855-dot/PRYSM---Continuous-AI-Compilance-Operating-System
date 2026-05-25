@@ -1,111 +1,96 @@
-# 🔱 PRYSM — Continuous AI Compliance Operating System
+<div align="center">
 
-> **Team Ragnarok** | Enterprise-Grade AI-Powered Compliance Platform
+# ⚡ AHAL V2
 
-[![CI](https://github.com/bsrikumar855-dot/PRYSM---Continuous-AI-Compilance-Operating-System/actions/workflows/ci.yml/badge.svg)](https://github.com/bsrikumar855-dot/PRYSM---Continuous-AI-Compilance-Operating-System/actions)
+### AI-powered ingestion, analysis, and intelligence engine for large codebases
+
+![Python](https://img.shields.io/badge/Python-87.6%25-blue?style=for-the-badge&logo=python)
+![TypeScript](https://img.shields.io/badge/TypeScript-12%25-3178C6?style=for-the-badge&logo=typescript)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi)
+![React](https://img.shields.io/badge/React-Frontend-61DAFB?style=for-the-badge&logo=react)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker)
+![License](https://img.shields.io/badge/License-Not%20Specified-lightgrey?style=for-the-badge)
+
+<br />
+
+**AHAL V2** is a full-stack AI ingestion engine designed to upload, scan, analyze, and extract intelligence from repositories, files, and codebases.
+
+> Built for fast analysis, structured outputs, API-first workflows, and developer-friendly automation.
+
+</div>
 
 ---
 
-## 🚀 What is PRYSM?
+## 🚀 Overview
 
-PRYSM is an AI-powered Continuous Compliance Operating System that automates document analysis, compliance verification, risk assessment, and audit reporting for financial documents.
+AHAL V2 is a modern AI-powered codebase analysis platform.  
+It provides a **FastAPI backend**, a **React + Vite frontend**, Docker support, session-based analysis, health monitoring, GitHub webhook support, and optional LLM-powered intelligence using Gemini-compatible configuration.
 
-**Core Workflow:**
-```
-Upload → OCR → AI Extraction → Compliance Engine → Risk Scoring → Human Review → Audit Reports
-```
+The project is structured for developers who want to inspect large codebases, upload project files, track scan sessions, and generate useful intelligence through API endpoints.
 
-## 🏗️ Architecture
+---
 
-| Layer | Technology | Purpose |
-|---|---|---|
-| Frontend | Next.js + Tailwind + shadcn/ui | Enterprise dashboard |
-| Backend | FastAPI (Python) | API & business logic |
-| OCR | PyMuPDF + PaddleOCR + OpenCV | Document parsing |
-| AI | Groq + LLaMA 3.3 | Entity extraction & analysis |
-| Database | PostgreSQL / SQLite | Data persistence |
-| Vector DB | ChromaDB / pgvector | Semantic search |
-| Reports | ReportLab | PDF audit reports |
+## ✨ Key Features
+
+- ⚡ **FastAPI backend** for high-performance API workflows
+- 📁 **File upload and ingestion pipeline**
+- 🧠 **Optional LLM-powered analysis**
+- 🔎 **Repository/codebase scanning support**
+- 🧾 **Session-based analysis tracking**
+- 📊 **Health and metrics endpoints**
+- 🔗 **GitHub webhook integration**
+- 🖥️ **React + Vite frontend**
+- 🎨 **Tailwind CSS based UI**
+- 🐳 **Docker and Docker Compose support**
+- 🧪 **Pytest testing setup**
+- 🛠️ **Makefile shortcuts for development**
+- 🌱 **Environment-based configuration**
+- 🗄️ **Memory storage by default with MongoDB option**
+
+---
+
+## 🏗️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Backend | FastAPI, Uvicorn, Pydantic |
+| Frontend | React, TypeScript, Vite |
+| Styling | Tailwind CSS |
+| Animation/UI | Framer Motion, Lucide React |
+| Testing | Pytest |
+| DevOps | Docker, Docker Compose, Makefile |
+| Storage | Memory backend, optional MongoDB |
+| AI/LLM | Gemini-compatible configuration |
+| PDF/Reports | fpdf2 |
+
+---
 
 ## 📂 Project Structure
 
-```
-PRYSM/
-├── backend/           # FastAPI application
-│   └── app/
-│       ├── routers/   # API endpoints
-│       ├── services/  # Business logic
-│       ├── agents/    # AI agent layer
-│       ├── engine/    # Deterministic compliance rules
-│       ├── ocr/       # Document parsing
-│       └── ...
-├── frontend/          # Next.js application
-│   └── PRYSM-Fr-main/
-│       └── PRYSM-Fr-main/
-│           ├── src/
-│           ├── public/
-│           └── package.json
-├── docs/              # Documentation
-├── data/              # Sample & seed data
-├── scripts/           # Dev & ops scripts
-└── .github/           # CI/CD workflows
-```
-
-## ⚡ Quick Start
-
-## Run Full Stack Locally
-
-### Backend
-```bash
-cd backend
-python -m pip install -r requirements.txt
-python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8001
-```
-
-### Frontend
-```bash
-cd frontend/PRYSM-Fr-main/PRYSM-Fr-main
-npm install
-npm run dev
-```
-
-Backend runs at `http://127.0.0.1:8001`. Frontend runs at `http://localhost:3000`.
-
-Set the frontend API base URL in `frontend/PRYSM-Fr-main/PRYSM-Fr-main/.env.local`:
-
-```bash
-NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8001
-```
-
-Backend endpoints used by the frontend:
-
-```text
-GET    /health
-POST   /api/v1/upload
-GET    /api/v1/
-GET    /api/v1/{document_id}
-DELETE /api/v1/{document_id}
-GET    /api/v1/overview
-GET    /api/v1/flags/{document_id}
-GET    /api/v1/reports/
-GET    /api/v1/reports/{report_id}
-POST   /api/v1/reports/generate/{document_id}
-GET    /api/v1/reports/{report_id}/download
-```
-
-## 🧪 Testing
-```bash
-cd backend
-python -m pytest tests/ -v
-```
-
-## 📖 Documentation
-- [System Design](docs/architecture/SYSTEM_DESIGN.md)
-- [Data Flow](docs/architecture/DATA_FLOW.md)
-- [Agent Design](docs/architecture/AGENT_DESIGN.md)
-- [API Reference](docs/api/API_REFERENCE.md)
-- [Rule Authoring](docs/rules/RULE_AUTHORING.md)
-- [Development Setup](docs/setup/DEVELOPMENT.md)
-
-## 📄 License
-MIT License — see [LICENSE](LICENSE)
+```txt
+AHAL-V2/
+├── app/                    # FastAPI backend application
+│   ├── api/                # API routers
+│   ├── chat/               # Chat / intent routing logic
+│   ├── config.py           # App configuration
+│   ├── main.py             # FastAPI entry point
+│   ├── sessions/           # Session management
+│   └── webhooks/           # GitHub webhook routes
+│
+├── frontend/               # React + Vite frontend
+│   ├── src/                # Frontend source code
+│   ├── package.json        # Frontend dependencies and scripts
+│   └── vite.config.*       # Vite configuration
+│
+├── docs/                   # Project documentation
+├── scripts/                # Utility scripts
+├── tests/                  # Backend tests
+│
+├── .env.example            # Environment variable template
+├── Dockerfile              # Backend Docker image
+├── docker-compose.yml      # API + optional MongoDB setup
+├── Makefile                # Common dev commands
+├── pytest.ini              # Pytest configuration
+├── requirements.txt        # Runtime Python dependencies
+├── requirements-dev.txt    # Development dependencies
+└── README.md               # Project documentation
