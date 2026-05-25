@@ -1,1 +1,0 @@
-# CopilotAgent package

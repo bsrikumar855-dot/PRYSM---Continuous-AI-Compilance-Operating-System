@@ -30,6 +30,7 @@ env/
 Thumbs.db
 
 # Storage (runtime data)
+storage/
 backend/storage/
 backend/uploads/
 backend/chroma_data/
